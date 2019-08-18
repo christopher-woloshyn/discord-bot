@@ -3,6 +3,7 @@ import discord
 from discord.ext import commands
 import json
 
+DEBUG = True
 bot = commands.Bot(command_prefix='$', description='A bot that greets the user back.')
 
 
@@ -33,6 +34,13 @@ async def greet(ctx):
 async def cat(ctx):
     await ctx.send("https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif")
 
+@bot.command()
+async def welcome(ctx):
+    await ctx.send('Welcome to the Hinman Discord Server!\n'
+                + 'Please enter the following command in chat:\n\n'
+                + '**$setup "Your Name" "Your Building"**\n\n'
+                + 'This will get everything ready for you so you can enjoy the groupchat!')
+
 
 # Where the bot actually runs
 def main():
@@ -42,6 +50,5 @@ def main():
         token = data['token'][0]
 
     bot.run(token)
-
 
 main()
